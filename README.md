@@ -1,1 +1,1 @@
-# isight_main_dotfiles
+Environment variables for properly configuring i-Sight Application
