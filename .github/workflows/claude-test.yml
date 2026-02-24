@@ -17,7 +17,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: "Create a file called smoke.txt containing the word hello"
-          claude_args: "--max-turns 3 --verbose"
+          claude_args: "--max-turns 3 --verbose --dangerously-skip-permissions"
 
       - name: Verify
         run: |
