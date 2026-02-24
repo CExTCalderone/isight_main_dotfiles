@@ -1,0 +1,26 @@
+name: Claude Smoke Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  claude-smoke:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: "Create a file called smoke.txt containing the word hello"
+          claude_args: "--max-turns 3 --verbose"
+
+      - name: Verify
+        run: |
+          echo "=== File exists ==="
+          test -f smoke.txt && echo "YES" || echo "NO"
+          echo "=== Contents ==="
+          cat smoke.txt
